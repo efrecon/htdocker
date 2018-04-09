@@ -1,9 +1,9 @@
 # HTTP Forwarding for Docker Container Output
 
-This forwarding service `forwarder.tcl` serves as an example code for the Docker
-[API implementation in Tcl][1].  The service is able to attach to one or several
-docker containers and send their output to remote URLs.  By default, the HTTP
-operation used is a `POST`, MIME type `application/octet-stream`.  The
+This forwarding service `forwarder.tcl` serves mainly as an example code for the
+Docker [API implementation in Tcl][1].  The service is able to attach to one or
+several docker containers and send their output to remote URLs.  By default, the
+HTTP operation used is a `POST`, MIME type `application/octet-stream`.  The
 containers to listen to and their destinations URLs is controlled by the option
 `-mapper` which should contain a space-separated list.  The list contains any
 alternating number of container name, destination URLs and plugin call
@@ -13,16 +13,20 @@ operation).  The forwarding service continuously listens for container presence,
 meaning that it will be able to pickup new containers matching the name and/or
 reattach to containers that would be restarted or recreated.
 
-  [1]: https://github.com/efrecon/docker-client
+  [1]: https://github.com/efrecon/tockler
 
 A plugin specification should take the form of a procedure call followed by an
 `@` sign, followed by a file specification (with no spaces inbetween).  The file
 should be found in the plugin directory specified by the `-exts` option to the
 program.  In short, if the plugin specification looked like
-`myproc@myplugin.tcl`, the file `myplugin.tcl` would be looked up in the plugin
-directory, sourced in a *safe* interpreter and the procedure `myproc` would be
-called with the content of the line captured on the component's `stdout`
-whenever it was captured.  Being placed in a safe interpreter, the procedure
+`myproc@myplugin.tcl`,
+
+* the file `myplugin.tcl` would be looked up in the plugin directory
+* `myplugin.tcl` would be sourced in a *safe* interpreter
+* and the procedure `myproc` would be called with the content of the line
+  captured on the component's `stdout` whenever it was captured.
+
+Being placed in a safe interpreter, the procedure
 will be able to call most of the regular Tcl commands, but will not have an I/O
 capabilities.  However, it can call a command called `send` which takes the
 following arguments (in order): the data to be sent, an additional (and
