@@ -1,4 +1,4 @@
-# HTTP Forwarding Service
+# HTTP Forwarding for Docker Container Output
 
 This forwarding service `forwarder.tcl` serves as an example code for the Docker
 [API implementation in Tcl][1].  The service is able to attach to one or several
