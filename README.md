@@ -26,17 +26,16 @@ program.  In short, if the plugin specification looked like
 * and the procedure `myproc` would be called with the content of the line
   captured on the component's `stdout` whenever it was captured.
 
-Being placed in a safe interpreter, the procedure
-will be able to call most of the regular Tcl commands, but will not have an I/O
-capabilities.  However, it can call a command called `send` which takes the
-following arguments (in order): the data to be sent, an additional (and
-optional) path or query argument string to *append* to the URL specified, an
-optional HTTP operation to perform (`GET`, `POST`, `DELETE`, etc.) and finally
-an optional MIME type. Passing empty strings for the HTTP operation or the MIME
-type will pick the defaults one from the program options.  It is only possible
-to append path/queries to the URL for security reasons, i.e. so as to avoid
-side-effects for plugins and allow users to fully specify the (root) URL where
-to send data to.
+Being placed in a safe interpreter, the procedure will be able to call most of
+the regular Tcl commands, but will not have an I/O capabilities.  However, it
+can call a command called `send` which takes the following arguments (in order):
+the data to be sent, an additional (and optional) path or query argument string
+to *append* to the URL specified, an optional HTTP operation to perform (`GET`,
+`POST`, `DELETE`, etc.) and finally an optional MIME type. Passing empty strings
+for the HTTP operation or the MIME type will pick the defaults one from the
+program options.  It is only possible to append path/queries to the URL for
+security reasons, i.e. so as to avoid side-effects for plugins and allow users
+to fully specify the (root) URL where to send data to.
 
 It is possible to pass arguments to the procedure. The procedure specification
 part of the plugin specification (i.e. the string before the `@` sign) should
